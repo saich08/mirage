@@ -1,0 +1,13 @@
+Mirage mock GPU inventory "{{ include "mirage.fullname" . }}" has been rendered.
+
+This chart does not create any Pods, Deployments, or other workload resources —
+it only publishes a ConfigMap describing a mock GPU node inventory.
+
+Configuration:
+  Node count: {{ .Values.cluster.nodeCount }}
+  SKU:        {{ .Values.hardware.sku }}
+  ODM:        {{ .Values.hardware.odm }}
+  Network:    {{ .Values.cluster.network }}
+
+Inspect the inventory with:
+  kubectl get configmap {{ include "mirage.fullname" . }}-inventory -n {{ .Release.Namespace }} -o yaml

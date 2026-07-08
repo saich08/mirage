@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "mirage",
+  "type": "object",
+  "required": ["cluster", "hardware"],
+  "properties": {
+    "nameOverride": {
+      "type": "string"
+    },
+    "fullnameOverride": {
+      "type": "string"
+    },
+    "cluster": {
+      "type": "object",
+      "required": ["nodeCount", "network"],
+      "properties": {
+        "nodeCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096,
+          "description": "Number of mock GPU nodes to generate"
+        },
+        "network": {
+          "type": "string",
+          "enum": ["ib", "roce"],
+          "description": "Node interconnect fabric"
+        }
+      }
+    },
+    "hardware": {
+      "type": "object",
+      "required": ["sku", "odm"],
+      "properties": {
+        "sku": {
+          "type": "string",
+          "enum": ["a100", "h100", "gb200", "gb300"],
+          "description": "GPU SKU for the mock nodes"
+        },
+        "odm": {
+          "type": "string",
+          "enum": ["supermicro", "dell", "asus"],
+          "description": "Original Device Manufacturer for the mock nodes"
+        }
+      }
+    },
+    "labels": {
+      "type": "object"
+    }
+  }
+}

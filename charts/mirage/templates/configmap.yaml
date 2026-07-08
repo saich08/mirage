@@ -1,0 +1,21 @@
+{{- include "mirage.validateValues" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "mirage.fullname" . }}-inventory
+  labels:
+    {{- include "mirage.labels" . | nindent 4 }}
+data:
+  cluster.yaml: |
+    nodeCount: {{ .Values.cluster.nodeCount }}
+    sku: {{ .Values.hardware.sku }}
+    odm: {{ .Values.hardware.odm }}
+    network: {{ .Values.cluster.network }}
+  nodes.yaml: |
+    nodes:
+    {{- range $i := until (.Values.cluster.nodeCount | int) }}
+      - name: {{ include "mirage.fullname" $ }}-node-{{ $i }}
+        sku: {{ $.Values.hardware.sku }}
+        odm: {{ $.Values.hardware.odm }}
+        network: {{ $.Values.cluster.network }}
+    {{- end }}
