@@ -1,0 +1,10 @@
+apiVersion: v2
+name: mirage
+description: Mock Infrastructure Resembling a GPU Environment - declares a mock GPU node inventory (no workloads are deployed)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - gpu
+  - mock
+  - inventory

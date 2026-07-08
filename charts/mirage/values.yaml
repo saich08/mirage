@@ -1,0 +1,22 @@
+# Override the chart name
+nameOverride: ""
+
+# Override the fully qualified application name
+fullnameOverride: ""
+
+# Mock GPU cluster topology
+cluster:
+  # Number of GPU nodes to generate
+  nodeCount: 4
+  # Node interconnect fabric. One of, ib (InfiniBand) or roce (RDMA over Converged Ethernet)
+  network: ib
+
+# Mock GPU hardware
+hardware:
+  # GPU SKU for the nodes. One of, a100, h100, gb200, gb300
+  sku: h100
+  # Original Device Manufacturer. One of, supermicro, asus, giga, dell
+  odm: supermicro
+
+# Extra labels applied to all rendered resources
+labels: {}
